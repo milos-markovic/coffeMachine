@@ -1,0 +1,50 @@
+
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.display_sugar{
+  width: 200px;
+  margin: 0 10px;
+  border: 2px solid black;
+  height: 50px;
+}
+
+button {
+  padding: 10px;
+  color: #6D1C1C;
+  //border: 1px solid black;
+}
+/* .line{
+  width: 20%;
+  background-color: rgba(0,0,0,0.8);
+  border: 2px solid yellow;
+}
+.icon {
+  font-size: 30px;
+}
+.first_line{
+  height: 10px;
+}
+.second_line{
+  height: 20px;
+}
+.third_line{
+  height: 30px;
+}
+.four_line{
+  height: 40px;
+}
+.fifth_line{
+  height: 50px;
+} */
+.sugar-bg{
+  background: rgba(0,0,0,0.2) !important;
+  color: white;
+}
