@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import changeImage from `${process.env.PUBLIC_URL}/img/change.jpg`;
-import '../Coffe.css';
+import './Coffe.css';
 
 class Coffe extends Component {
 
@@ -22,5 +22,6 @@ class Coffe extends Component {
   }
 
 }
+
 
 export default Coffe;
