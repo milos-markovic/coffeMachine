@@ -3,7 +3,6 @@ import React, { Component } from "react";
 export default class MoneyInput extends Component {
   insertMoney = e => {
     let input = e.target.value;
-    let max = this.props.max();
     let min = this.props.min();
     // set state on many component
     this.props.setMoneyState(input);

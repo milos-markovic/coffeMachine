@@ -15,7 +15,6 @@ class Money extends Component {
     if (this.props.moneyIsInsert === false) {
       let enteredMoney = this.state.money;
       let min = this.props.min();
-      let max = this.props.max();
       // console.log(enteredMoney, min, max);
       if (enteredMoney > 0 && enteredMoney >= min) {
         this.props.setMessage(
@@ -74,7 +73,6 @@ class Money extends Component {
             setMoneyState={this.setMoneyState}
             moneyIsInsert={this.moneyIsInsert}
             money={this.state.money}
-            max={this.props.max}
             min={this.props.min}
           />
           <input
