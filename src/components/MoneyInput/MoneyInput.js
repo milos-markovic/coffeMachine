@@ -9,27 +9,31 @@ export default class MoneyInput extends Component {
     this.props.setMoneyState(input);
 
     if (input !== "") {
+      // if (this.props.moneyIsInsert === false) {
       if (isNaN(input)) {
         this.props.setMessage("Unesite brojeve kao karaktere");
       } else {
         let moneyNumber = Number(input);
 
-        if (moneyNumber === 0 || moneyNumber < min || moneyNumber > max) {
-          this.props.setMessage(
-            `Mozete uneti vrednosti izmedju ${min} i ${max} vrednosti`
-          );
-          // reset state in money
+        if (moneyNumber === 0 || moneyNumber < min) {
+          this.props.setMessage(`Morate uneti minimalno ${min} dinara`);
         } else {
+          // set money in money state
           this.props.setMoneyState(moneyNumber);
 
           this.props.setMessage(
-            "Uneli ste ispravne vrednosti, sad pritisnite dugme push"
+            "Uneli ste ispravne vrednosti, sad pritisnite dugme 'push', da bi uneli novac"
           );
         }
       }
+      // }
     } else {
       this.props.setMessage("Molimo vas unesite novac");
     }
+  };
+
+  resetInput = () => {
+    document.querySelector("#inputText").disabled = true;
   };
 
   render() {
@@ -42,6 +46,7 @@ export default class MoneyInput extends Component {
           className={this.props.className}
           onChange={this.insertMoney}
           value={this.props.money}
+          id="inputText"
         />
       </div>
     );

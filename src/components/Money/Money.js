@@ -12,17 +12,23 @@ class Money extends Component {
   handleInsertMoney = e => {
     e.preventDefault();
 
-    if (!this.props.isInsertMoney) {
+    if (this.props.moneyIsInsert === false) {
       let enteredMoney = this.state.money;
       let min = this.props.min();
       let max = this.props.max();
       // console.log(enteredMoney, min, max);
-      if (enteredMoney > 0 && enteredMoney > min && enteredMoney < max) {
-        this.props.setMessage("Unesite secer i odaberite proizvod");
+      if (enteredMoney > 0 && enteredMoney >= min) {
+        this.props.setMessage(
+          `Uneli ste ${enteredMoney} dinara, odaberite kolicinu secera i odaberite proizvod`
+        );
 
         this.resetMoneyState();
 
         this.props.confirmInsertMoney(enteredMoney);
+
+        this.props.resetSugar();
+
+        this.resetInputAndButton();
       }
     }
   };
@@ -39,6 +45,16 @@ class Money extends Component {
     });
   };
 
+  resetInputAndButton = () => {
+    // input text
+    let inputText = document.querySelector("#inputText");
+    inputText.disabled = true;
+
+    // btn
+    let btn = document.querySelector("#btn_push");
+    btn.disabled = true;
+  };
+
   render() {
     return (
       <div className="card p-4 mb-3 border border-dark bg-products">
@@ -52,9 +68,11 @@ class Money extends Component {
             type="text"
             name="money"
             className="form-control mr-2 text-dark"
+            id="moneyInput"
             placeholder="Here insert your money"
             setMessage={this.props.setMessage}
             setMoneyState={this.setMoneyState}
+            moneyIsInsert={this.moneyIsInsert}
             money={this.state.money}
             max={this.props.max}
             min={this.props.min}

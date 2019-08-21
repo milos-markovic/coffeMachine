@@ -11,3 +11,8 @@
 .card-title {
   font-size: 14px;
 }
+
+.disableElement {
+  opacity: 0.2;
+  pointer-events: none;
+}

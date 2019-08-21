@@ -49,8 +49,8 @@ class App extends Component {
     this.setState({
       message: "Molimo vas unesite novac",
       isInsertMoney: false,
-      sugar: 100,
       insertMoney: 0,
+      sugar: 100,
       selectedProduct: null,
       isSelectProduct: false,
       showPreparationTime: false,
@@ -133,25 +133,10 @@ class App extends Component {
 
       if (insertedMoney >= product.price) {
         this.cookProduct(product);
-      } else if (insertedMoney < product.price) {
-        this.addMoney(product);
       }
     } else {
       this.resetState();
     }
-  };
-
-  addMoney = product => {
-    let addMoney = product.price - this.state.insertMoney;
-
-    this.setMessage(`Morate dodati jos ${addMoney} dinara`);
-
-    this.setState({
-      // set new value state
-      isSelectProduct: false,
-      isAddMoney: true,
-      addMoney: addMoney
-    });
   };
 
   checkPreparationState = () => {
@@ -198,6 +183,8 @@ class App extends Component {
     this.showChange(change);
 
     this.showFinishedProduct();
+
+    this.resetSelectedProduct();
   };
 
   showChange = change => {
@@ -239,6 +226,21 @@ class App extends Component {
     return Math.min(...prices);
   };
 
+  resetSelectedProduct = () => {
+    let products = document.querySelectorAll(".productElement");
+
+    products.forEach(function(product) {
+      product.classList.remove("disableElement");
+    });
+
+    let inputText = document.querySelector("#inputText");
+    inputText.disabled = false;
+
+    // btn
+    let btn = document.querySelector("#btn_push");
+    btn.disabled = false;
+  };
+
   render() {
     return (
       <div className="App pb-2">
@@ -257,7 +259,8 @@ class App extends Component {
                 <Products
                   products={this.state.products}
                   selectProduct={this.selectProduct}
-                  isSelectProduct={this.state.isSelectProduct}
+                  insertMoney={this.state.insertMoney}
+                  isInsertMoney={this.state.isInsertMoney}
                   showPreparationTime={this.showPreparationTime}
                 />
               </div>
@@ -271,11 +274,7 @@ class App extends Component {
               <Money
                 setMessage={this.setMessage}
                 confirmInsertMoney={this.confirmInsertMoney}
-                //setInsertMoney={this.setInsertMoney}
-                //isAddMoney={this.state.isAddMoney}
-                //addMoney={this.state.addMoney}
-                //insertMoney={this.state.insertMoney}
-                isSelectProduct={this.state.isSelectProduct}
+                moneyIsInsert={this.state.isInsertMoney}
                 max={this.max}
                 min={this.min}
                 resetSugar={this.resetSugarValue}

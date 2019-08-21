@@ -10,7 +10,7 @@ import "./Products.css";
 
 class Products extends Component {
   findProduct = id => {
-    if (!this.props.isSelectProduct) {
+    if (this.props.isInsertMoney === true) {
       let findProduct = null;
 
       this.props.products.forEach(function(product) {
@@ -18,7 +18,24 @@ class Products extends Component {
           findProduct = product;
         }
       });
-      this.props.selectProduct(findProduct);
+
+      // uneseni novac
+      let money = this.props.insertMoney;
+
+      if (money >= findProduct.price) {
+        this.props.selectProduct(findProduct);
+
+        // select all elements for disabling
+        let products = document.querySelectorAll(".productElement");
+        products.forEach(function(product) {
+          let elementId = Number(product.id);
+
+          // disable elements
+          if (elementId !== id) {
+            product.classList.add("disableElement");
+          }
+        });
+      }
     }
   };
 
@@ -43,7 +60,11 @@ class Products extends Component {
   render() {
     const products = this.props.products.map(product => {
       return (
-        <div className="col-md-3 mb-3 test" key={product.id}>
+        <div
+          className="col-md-3 mb-3 productElement"
+          key={product.id}
+          id={product.id}
+        >
           <div
             className="card product"
             onClick={() => {
