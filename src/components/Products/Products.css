@@ -1,14 +1,13 @@
-
-.product:hover{
-  background: rgba(0,0,0,0.2);
+.product:hover {
+  background: rgba(0, 0, 0, 0.2);
   color: white;
   border: 1px solid white;
   cursor: pointer;
 }
 
-.product-img{
+.product-img {
   height: 150px;
 }
-.card-title{
+.card-title {
   font-size: 14px;
 }
