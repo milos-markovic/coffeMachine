@@ -1,5 +1,4 @@
-
-.card{
+.card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +8,7 @@
   align-items: center;
   justify-content: center;
 }
-.display_sugar{
+.display_sugar {
   width: 200px;
   margin: 0 10px;
   border: 2px solid black;
@@ -18,7 +17,7 @@
 
 button {
   padding: 10px;
-  color: #6D1C1C;
+  color: #6d1c1c;
   //border: 1px solid black;
 }
 /* .line{
@@ -44,7 +43,7 @@ button {
 .fifth_line{
   height: 50px;
 } */
-.sugar-bg{
-  background: rgba(0,0,0,0.2) !important;
+.sugar-bg {
+  background: rgba(0, 0, 0, 0.2) !important;
   color: white;
 }
