@@ -12,22 +12,44 @@ import Coffe from "../Coffe/Coffe";
 class App extends Component {
   constructor(props) {
     super(props);
+    const products = [
+      { name: "Irish Coffe", price: 70, img: "iris.jpg", id: 1 },
+      { name: "Espresso", price: 90, img: "espresso.jpg", id: 2 },
+      {
+        name: "Espresso with milk",
+        price: 100,
+        img: "espresso.jpg",
+        id: 3
+      },
+      { name: "Instant Coffe", price: 60, img: "instant.jpg", id: 4 },
+      {
+        name: "Instant Coffe with milk",
+        price: 70,
+        img: "instant.jpg",
+        id: 5
+      },
+      { name: "Macchiato", price: 100, img: "machiato.jpg", id: 6 },
+      { name: "Cappuchino", price: 110, img: "capuchino.jpg", id: 7 },
+      { name: "Turkis", price: 35, img: "turkish.jpg", id: 8 }
+    ];
+    const maxPrice = products.reduce((acc, product) => {
+      if (product.price > acc) {
+        acc = product.price;
+      }
+
+      return acc;
+    }, 0);
+
+    const minPrice = products.reduce((acc, product) => {
+      if (product.price < acc) {
+        acc = product.price;
+      }
+
+      return acc;
+    }, maxPrice);
+
     this.state = {
-      products: [
-        { name: "Irish Coffe", price: 70, img: "iris.jpg", id: 1 },
-        { name: "Espresso", price: 90, img: "espresso.jpg", id: 2 },
-        { name: "Espresso with milk", price: 100, img: "espresso.jpg", id: 3 },
-        { name: "Instant Coffe", price: 60, img: "instant.jpg", id: 4 },
-        {
-          name: "Instant Coffe with milk",
-          price: 70,
-          img: "instant.jpg",
-          id: 5
-        },
-        { name: "Macchiato", price: 100, img: "machiato.jpg", id: 6 },
-        { name: "Cappuchino", price: 110, img: "capuchino.jpg", id: 7 },
-        { name: "Turkis", price: 50, img: "turkish.jpg", id: 8 }
-      ],
+      products,
       message: "Molimo vas unesite novac",
       isInsertMoney: false,
       insertMoney: 0,
@@ -41,7 +63,9 @@ class App extends Component {
       coffeImage: false,
       changeMessage: "",
       isAddMoney: false,
-      addMoney: 0
+      addMoney: 0,
+      maxPrice,
+      minPrice
     };
   }
 
@@ -275,8 +299,8 @@ class App extends Component {
                 setMessage={this.setMessage}
                 confirmInsertMoney={this.confirmInsertMoney}
                 moneyIsInsert={this.state.isInsertMoney}
-                max={this.max}
-                min={this.min}
+                max={this.state.maxPrice}
+                min={this.state.minPrice}
                 resetSugar={this.resetSugarValue}
               />
               <Coffe

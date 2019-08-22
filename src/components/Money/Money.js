@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import MoneyInput from "../MoneyInput/MoneyInput";
+import NewMoneyInput from "../NewMoneyInput";
+import { MIN_PRODUCT_VALUE } from "../../constants";
 
 class Money extends Component {
   constructor(props) {
@@ -63,17 +65,13 @@ class Money extends Component {
           className="form-inline"
           onSubmit={this.handleInsertMoney}
         >
-          <MoneyInput
-            type="text"
+          <NewMoneyInput
             name="money"
-            className="form-control mr-2 text-dark"
-            id="moneyInput"
-            placeholder="Here insert your money"
-            setMessage={this.props.setMessage}
-            setMoneyState={this.setMoneyState}
-            moneyIsInsert={this.moneyIsInsert}
-            money={this.state.money}
-            min={this.props.min}
+            placeholder={this.props.min}
+            className="bla"
+            value=""
+            min={MIN_PRODUCT_VALUE}
+            max={this.props.max}
           />
           <input
             type="submit"
